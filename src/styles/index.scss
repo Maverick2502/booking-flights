@@ -1,0 +1,41 @@
+@use "./normalize.scss" as *;
+@use "./variables.scss" as *;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Inter", sans-serif;
+
+  border: none;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+
+  background-color: $bg-color;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    margin-top: 15px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #e3e3e6;
+    border-radius: 5px;
+    &:hover {
+      background: rgb(148, 153, 150);
+    }
+  }
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: inherit;
+}

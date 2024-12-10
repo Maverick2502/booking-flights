@@ -1,0 +1,19 @@
+@mixin flex(
+  $flex_direction: row,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: $flex_direction;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: $flex_direction;
+  flex-direction: $flex_direction;
+  -webkit-box-pack: $justify_content;
+  -ms-flex-pack: $justify_content;
+  justify-content: $justify_content;
+  -webkit-box-align: $align_items;
+  -ms-flex-align: $align_items;
+  align-items: $align_items;
+}
