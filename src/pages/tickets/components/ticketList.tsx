@@ -30,6 +30,8 @@ const TicketList = ({ ticket, selectedCurrency }: TicketListProps) => {
                 ticket.carrier as keyof typeof mapCarrierToImage
               ]
             }
+            height={46}
+            width={164}
             alt={`Logo of ${ticket.carrier}`}
           />
           <button
@@ -77,11 +79,11 @@ const TicketList = ({ ticket, selectedCurrency }: TicketListProps) => {
                 dateTime={ticket.departure_date}
                 aria-label="Departure time"
               >
-                {formatDate(ticket.departure_date, ticket.departure_time)}
+                {formatDate(ticket.departure_date)}
               </time>
 
-              <time dateTime={ticket.departure_date} aria-label="Arrival time">
-                {formatDate(ticket.departure_date, ticket.departure_time)}
+              <time dateTime={ticket.arrival_date} aria-label="Arrival time">
+                {formatDate(ticket.arrival_date)}
               </time>
             </div>
           </div>

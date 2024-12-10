@@ -1,31 +1,48 @@
 import { CurrencyType } from "../models";
 
-const formatDate = (date: string, time: string) => {
+const exchangeRates = {
+  EUR: 0.011,
+  USD: 0.013,
+  RUB: 1,
+};
+
+const formatDate = (date: string): string => {
   try {
-    const dateTime = new Date(`${date} ${time}`);
-    if (isNaN(dateTime.getTime())) {
-      throw new Error(`Invalid date/time combination: ${date}, ${time}`);
+    // TODO
+    // We are working with this formmat: "12.05.18"
+    // Need to bring to this one: "12 мая 2018 г., сб"
+    const [day, month, year] = date.split(".").map(Number);
+
+    const formattedDate = new Date(Date.UTC(2000 + year, month - 1, day));
+
+    if (isNaN(formattedDate.getTime())) {
+      throw new Error(`Invalid date: ${date}`);
     }
+
     const options: Intl.DateTimeFormatOptions = {
-      weekday: "short",
       year: "numeric",
-      month: "short",
+      month: "long",
       day: "numeric",
     };
-    return new Intl.DateTimeFormat("ru-RU", options).format(dateTime);
+
+    const formattedDateString = new Intl.DateTimeFormat(
+      "ru-RU",
+      options
+    ).format(formattedDate);
+
+    const weekday = new Intl.DateTimeFormat("ru-RU", {
+      weekday: "short",
+    }).format(formattedDate);
+
+    return `${formattedDateString}, ${weekday}`;
   } catch (error) {
     console.error(error);
-    return "Invalid date/time";
+    return "Invalid date";
   }
 };
 
 const convertPrice = (price: number, currency: CurrencyType): number => {
-  const exchangeRates = {
-    EUR: 0.011,
-    USD: 0.013,
-    RUB: 1,
-  };
   return price * (exchangeRates[currency] || 1);
 };
 
-export { formatDate, convertPrice };
+export { convertPrice, formatDate };

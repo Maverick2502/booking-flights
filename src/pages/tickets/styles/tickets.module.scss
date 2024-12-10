@@ -169,11 +169,6 @@
   gap: $gap-default;
   width: 250px;
 
-  & img {
-    max-width: 100%;
-    height: auto;
-  }
-
   & button {
     @include flex(column);
     gap: 5px;
@@ -194,15 +189,9 @@
 .hr {
   margin: -20px 0;
   border: 1px solid #cccccc46;
-}
 
-@mixin flex(
-  $flex_direction: row,
-  $justify_content: center,
-  $align_items: center
-) {
-  display: flex;
-  flex-direction: $flex_direction;
-  justify-content: $justify_content;
-  align-items: $align_items;
+  min-height: 168px;
+  max-height: 168px;
+
+  box-sizing: border-box;
 }
